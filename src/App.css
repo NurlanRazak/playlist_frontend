@@ -1,0 +1,27 @@
+.playlist {
+    padding: 30px;
+    justify-content: left;
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 60%;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th {
+    background-color: rgba(200,210,210)
+}
+
+tr, th {
+    height: 20px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}

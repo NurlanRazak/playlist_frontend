@@ -2,29 +2,41 @@ import React from "react";
 
 class Playlist extends React.Component
 {
+    state = {
+        performers: []
+    };
+
+    async componentDidMount() {
+        const url = "http://127.0.0.1:8000/api/performer";
+        const response = await fetch(url);
+        const data = await response.json();
+        this.setState({ performers: data.data })
+    }
     render() {
+        if (!this.state.performers) {
+            return <div> Performers not found</div>;
+        }
+
         return (
-            <div>
-                <p> Плейлист</p>
+            <div className="playlist">
+                <h3> Плейлист </h3>
                 <table>
-                    <tr>
-                        <th>Испольнитель</th>
-                        <th>Песня</th>
-                        <th>Жанр</th>
-                        <th>Год</th>
-                    </tr>
-                    <tr>
-                        <td>The Kingston Trio</td>
-                        <td>Toom Dooley</td>
-                        <td>Folk</td>
-                        <td>1958</td>
-                    </tr>
-                    <tr>
-                        <td>Led Zeppelin</td>
-                        <td>Kashmir</td>
-                        <td>Rock</td>
-                        <td>1975</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <th>Испольнитель </th>
+                            <th>Песня</th>
+                            <th>Жанр</th>
+                            <th>Год</th>
+                        </tr>
+                        {this.state.performers.map(performer => (
+                            <tr key={performer.id}>
+                                <td>{performer.name}</td>
+                                <td>{performer.song}</td>
+                                <td>{performer.genre}</td>
+                                <td>{performer.year}</td>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
             </div>
         );
