@@ -1,7 +1,18 @@
+.main {
+    display: flex;
+    width: 100%;
+}
 .playlist {
-    padding: 30px;
+    padding: 10px;
     justify-content: left;
+    width: 70%;
+}
 
+.filter {
+    padding-left: 10px;
+    background-color: rgba(200,210,210);
+    width: 50px;
+    height: 150px;
 }
 
 table {

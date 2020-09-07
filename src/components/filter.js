@@ -35,9 +35,9 @@ class Filter extends React.Component
         }
 
         return (
-            <div className="filter">
+            <div>
                 <h3> Фильтр</h3>
-                <div>
+                <div className="filter">
                     <label>Испольнитель:</label>
                     <select>
                         <option value="all">Все</option>
