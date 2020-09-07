@@ -1,23 +1,36 @@
 .main {
     display: flex;
     width: 100%;
+    justify-content: center;
 }
 .playlist {
-    padding: 10px;
-    justify-content: left;
-    width: 70%;
+    height: 100%;
+}
+
+.parentFilter {
+    margin-left: 20px;
+    height: 100%;
 }
 
 .filter {
-    padding-left: 10px;
+    height: 100%;
+    padding: 10px;
     background-color: rgba(200,210,210);
-    width: 50px;
-    height: 150px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 8px;
+}
+
+select {
+    padding: 5px;
 }
 
 table {
   border-collapse: collapse;
-  width: 60%;
+  width: 100%;
 }
 
 table, th, td {
@@ -35,4 +48,8 @@ tr, th {
 th, td {
     padding: 15px;
     text-align: left;
+}
+
+td {
+    min-width: 100px;
 }

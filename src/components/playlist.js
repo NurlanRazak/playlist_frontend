@@ -7,7 +7,9 @@ class Playlist extends React.Component
     };
 
     async componentDidMount() {
-        const url = "http://127.0.0.1:8000/api/performer";
+        const url = "http://playlist.local.com/api/performer";
+
+        // const url = "http://127.0.0.1:8000/api/performer";
         const response = await fetch(url);
         const data = await response.json();
         this.setState({ performers: data.data })
