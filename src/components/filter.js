@@ -9,9 +9,9 @@ class Filter extends React.Component
     };
 
     async componentDidMount() {
-        const performerUrl = "http://playlist.local.com/api/performer";
-        const genreUrl = "http://playlist.local.com/api/genre";
-        const yearUrl = "http://playlist.local.com/api/year";
+        const performerUrl = "http://playlist.local.com/api/performer?per_page=-1";
+        const genreUrl = "http://playlist.local.com/api/genre?all=1";
+        const yearUrl = "http://playlist.local.com/api/year?all=1";
 
         // const performerUrl = "http://127.0.0.1:8000/api/performer";
         // const genreUrl = "http://127.0.0.1:8000/api/genre";
@@ -28,8 +28,8 @@ class Filter extends React.Component
 
         this.setState({
             performers: performerData.data,
-            genres: genreData.data,
-            years: yearData.data
+            genres: genreData,
+            years: yearData
         })
     }
 

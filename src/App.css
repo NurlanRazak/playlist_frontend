@@ -15,7 +15,7 @@
 .filter {
     height: 100%;
     padding: 10px;
-    background-color: rgba(200,210,210);
+    background-color: rgba(235,235,235);
 }
 
 .item {
@@ -38,7 +38,7 @@ table, th, td {
 }
 
 th {
-    background-color: rgba(200,210,210)
+    background-color: rgba(235,235,235)
 }
 
 tr, th {
