@@ -56,10 +56,12 @@ td {
 
 .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 100%;
     margin: 15px auto;
     list-style: none;
     outline: none;
+    position: relative;
 }
 
 span {
@@ -68,9 +70,31 @@ span {
       cursor: pointer;
 }
 
-span .active {
-    background-color: #47ccde;
-    border-radius: 1px solid #47ccde ;
-    border-color: #47ccde ;
-    color: #fff;
+span.active {
+    background-color: rgba(235,235,235);
+    border-radius: 50%;
+    border: 1px solid grey;
+}
+
+.activePerPage {
+    background-color: rgba(235,235,235);
+    border: 1px solid black;
+    margin-left: 5px 10px;
+}
+
+.perPage {
+    border: 1px solid black;
+}
+
+
+.pageNumber {
+    flex: 0 1 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.totalPage {
+    flex: 0 1 auto;
+    margin-left: auto;
 }
