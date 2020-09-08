@@ -2,6 +2,14 @@ import React from "react";
 
 class Filter extends React.Component
 {
+
+    constructor(props) {
+        super(props);
+        this.handlePerformer = this.handlePerformer.bind(this);
+        this.handleGenre = this.handleGenre.bind(this);
+        this.handleYear = this.handleYear.bind(this);
+    }
+
     state = {
         performers: [],
         genres: [],
@@ -33,6 +41,21 @@ class Filter extends React.Component
         })
     }
 
+    handlePerformer(event) {
+        event.persist()
+        console.log('here', event.target.value);
+    }
+
+    handleGenre(event) {
+        event.persist();
+        console.log('genre', event.target.value);
+    }
+
+    handleYear(event) {
+        event.persist();
+        console.log('year', event.target.value);
+    }
+
     render() {
         if (!this.state.performers || !this.state.genres || !this.state.years) {
             return <div> Filters not found</div>;
@@ -44,30 +67,30 @@ class Filter extends React.Component
                 <div className="filter">
                     <div className="item">
                         <label>Испольнитель</label>
-                        <select>
+                        <select onChange={this.handlePerformer}>
                             <option value="all">Все</option>
                             {this.state.performers.map(performer => (
-                                <option value="performer.name" key={performer.id}>{performer.name}</option>
+                                <option value={performer.name} key={performer.id}>{performer.name}</option>
                             ))}
                         </select>
                     </div>
 
                     <div className="item">
                         <label>Жанр</label>
-                        <select>
+                        <select onChange={this.handleGenre}>
                             <option value="all">Все</option>
                             {this.state.genres.map(genre => (
-                                <option value="genre.name" key={genre.id}>{genre.name}</option>
+                                <option value={genre.name} key={genre.id}>{genre.name}</option>
                             ))}
                         </select>
                     </div>
 
                     <div className="item">
                         <label>Год</label>
-                        <select>
+                        <select onChange={this.handleYear}>
                             <option value="all">Все</option>
                             {this.state.years.map(year => (
-                                <option value="year.year" key={year.id}>{year.year}</option>
+                                <option value={year.year} key={year.id}>{year.year}</option>
                             ))}
                         </select>
                     </div>
