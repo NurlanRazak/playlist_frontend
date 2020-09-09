@@ -48,7 +48,7 @@ class Playlist extends React.Component
 
     getPerformersWithPage = async (pageNumber, perPage) => {
 
-        const url = `http://3.9.172.159/api/performer?${this.state.performer ? ("performer="+this.state.performer) : ''}${this.state.genre ? ("&genre="+this.state.genre) : ''}${this.state.year ? ("&year="+this.state.year) : ''}&page=${pageNumber}&per_page=${perPage}`;
+        const url = `http://35.176.223.82/api/performer?${this.state.performer ? ("performer="+this.state.performer) : ''}${this.state.genre ? ("&genre="+this.state.genre) : ''}${this.state.year ? ("&year="+this.state.year) : ''}&page=${pageNumber}&per_page=${perPage}`;
 
         const response = await fetch(url);
         const data = await response.json();
