@@ -10,19 +10,47 @@ class Playlist extends React.Component
         page: 1,
         last_page: null,
         url: null,
-        performer: this.props.filter,
-        genre: null,
-        year: null
+        performer: (this.props.keyFilter == 'selectPerformer') ? (this.props.filter ? this.props.filter : null) : null,
+        genre: (this.props.keyFilter == 'selectGenre') ? (this.props.filter ? this.props.filter : null) : null,
+        year: (this.props.keyFilter == 'selectYear') ? (this.props.filter ? this.props.filter : null) : null
     };
 
     async componentDidMount() {
         this.getPerformersWithPage(this.state.page, this.state.per_page)
     }
 
-    getPerformersWithPage = async (pageNumber, perPage) => {
-        // const url = `http://playlist.local.com/api/performer?page=${pageNumber}&per_page=${perPage}`;
+    componentDidUpdate() {
+        if (this.props.keyFilter == 'selectPerformer' && this.state.performer != this.props.filter) {
+            this.state.performer = this.props.filter
+            this.setState({
+                genre: null,
+                year: null,
+            })
+            this.getPerformersWithPage(this.state.page, this.state.per_page)
+        }
+        if (this.props.keyFilter == 'selectGenre' && this.state.genre != this.props.filter) {
+            this.state.genre = this.props.filter
+            this.setState({
+                performer: null,
+                year: null,
+            })
+            this.getPerformersWithPage(this.state.page, this.state.per_page)
+        }
+        if (this.props.keyFilter == 'selectYear' && this.state.year != this.props.filter) {
+            this.state.year = this.props.filter
+            this.setState({
+                performer: null,
+                genre: null,
+            })
+            this.getPerformersWithPage(this.state.page, this.state.per_page)
+        }
+    }
 
-        const url = `http://127.0.0.1:8000/api/performer?performer=${this.state.performer}&genre=${this.state.genre}&year=${this.state.year}&page=${pageNumber}&per_page=${perPage}`;
+    getPerformersWithPage = async (pageNumber, perPage) => {
+
+        const url = `http://playlist.local.com/api/performer?${this.state.performer ? ("performer="+this.state.performer) : ''}${this.state.genre ? ("&genre="+this.state.genre) : ''}${this.state.year ? ("&year="+this.state.year) : ''}&page=${pageNumber}&per_page=${perPage}`;
+
+        // const url = `http://127.0.0.1:8000/api/performer?performer=${this.state.performer}&genre=${this.state.genre}&year=${this.state.year}&page=${pageNumber}&per_page=${perPage}`;
         const response = await fetch(url);
         const data = await response.json();
         this.setState({

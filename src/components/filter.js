@@ -17,13 +17,13 @@ class Filter extends React.Component
     };
 
     async componentDidMount() {
-        // const performerUrl = "http://playlist.local.com/api/performer?per_page=-1";
-        // const genreUrl = "http://playlist.local.com/api/genre?all=1";
-        // const yearUrl = "http://playlist.local.com/api/year?all=1";
+        const performerUrl = "http://playlist.local.com/api/performer?per_page=-1";
+        const genreUrl = "http://playlist.local.com/api/genre?all=1";
+        const yearUrl = "http://playlist.local.com/api/year?all=1";
 
-        const performerUrl = "http://127.0.0.1:8000/api/performer?per_page=-1";
-        const genreUrl = "http://127.0.0.1:8000/api/genre?all=1";
-        const yearUrl = "http://127.0.0.1:8000/api/year?all=1";
+        // const performerUrl = "http://127.0.0.1:8000/api/performer?per_page=-1";
+        // const genreUrl = "http://127.0.0.1:8000/api/genre?all=1";
+        // const yearUrl = "http://127.0.0.1:8000/api/year?all=1";
 
         const performerResponse = await fetch(performerUrl);
         const performerData = await performerResponse.json();
@@ -43,7 +43,7 @@ class Filter extends React.Component
 
     handleEvent(event) {
         event.persist()
-        this.props.setFilter(event.target.value);
+        this.props.setFilter(event._targetInst.key, event.target.value);
     }
 
     // handleGenre(event) {
@@ -67,7 +67,7 @@ class Filter extends React.Component
                 <div className="filter">
                     <div className="item">
                         <label>Испольнитель</label>
-                        <select onChange={this.handleEvent}>
+                        <select key="selectPerformer" onChange={this.handleEvent}>
                             <option value="all">Все</option>
                             {this.state.performers.map(performer => (
                                 <option value={performer.name} key={performer.id}>{performer.name}</option>
@@ -77,7 +77,7 @@ class Filter extends React.Component
 
                     <div className="item">
                         <label>Жанр</label>
-                        <select onChange={this.handleEvent}>
+                        <select key="selectGenre" onChange={this.handleEvent}>
                             <option value="all">Все</option>
                             {this.state.genres.map(genre => (
                                 <option value={genre.name} key={genre.id}>{genre.name}</option>
@@ -87,7 +87,7 @@ class Filter extends React.Component
 
                     <div className="item">
                         <label>Год</label>
-                        <select onChange={this.handleEvent}>
+                        <select key="selectYear" onChange={this.handleEvent}>
                             <option value="all">Все</option>
                             {this.state.years.map(year => (
                                 <option value={year.year} key={year.id}>{year.year}</option>

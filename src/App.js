@@ -4,18 +4,22 @@ import Playlist from "./components/playlist";
 
 class App extends React.Component
 {
-    state = {
-        param: ""
+    constructor (props) {
+        super(props)
+        this.setParams = this.setParams.bind(this)
     }
 
-    async componentDidMount() {
-        filte = "";
+    state = {
+        key: "",
+        filter: ""
     }
-    async setParams(performer) {
+
+    setParams(key, value) {
+        console.log('keyval', key, value);
         this.setState({
-            param: performer
-        });
-        console.log('perf', performer);
+            key: key,
+            filter: value
+        })
     }
 
 
@@ -23,7 +27,7 @@ class App extends React.Component
 
         return (
             <div className="main">
-                <Playlist filter={this.state.param} />
+                <Playlist keyFilter={this.state.key} filter={this.state.filter} />
                 <Filter setFilter={this.setParams}/>
             </div>
         );
