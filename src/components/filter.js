@@ -17,13 +17,9 @@ class Filter extends React.Component
     };
 
     async componentDidMount() {
-        const performerUrl = "http://playlist.local.com/api/performer?per_page=-1";
-        const genreUrl = "http://playlist.local.com/api/genre?all=1";
-        const yearUrl = "http://playlist.local.com/api/year?all=1";
-
-        // const performerUrl = "http://127.0.0.1:8000/api/performer?per_page=-1";
-        // const genreUrl = "http://127.0.0.1:8000/api/genre?all=1";
-        // const yearUrl = "http://127.0.0.1:8000/api/year?all=1";
+        const performerUrl = "http://3.9.172.159/api/performer?per_page=-1";
+        const genreUrl = "http://3.9.172.159/api/genre?all=1";
+        const yearUrl = "http://3.9.172.159/api/year?all=1";
 
         const performerResponse = await fetch(performerUrl);
         const performerData = await performerResponse.json();
