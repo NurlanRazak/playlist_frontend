@@ -9,7 +9,10 @@ class Playlist extends React.Component
         current_page: null,
         page: 1,
         last_page: null,
-        url: null
+        url: null,
+        performer: this.props.filter,
+        genre: null,
+        year: null
     };
 
     async componentDidMount() {
@@ -17,9 +20,9 @@ class Playlist extends React.Component
     }
 
     getPerformersWithPage = async (pageNumber, perPage) => {
-        const url = `http://playlist.local.com/api/performer?page=${pageNumber}&per_page=${perPage}`;
+        // const url = `http://playlist.local.com/api/performer?page=${pageNumber}&per_page=${perPage}`;
 
-        // const url = "http://127.0.0.1:8000/api/performer";
+        const url = `http://127.0.0.1:8000/api/performer?performer=${this.state.performer}&genre=${this.state.genre}&year=${this.state.year}&page=${pageNumber}&per_page=${perPage}`;
         const response = await fetch(url);
         const data = await response.json();
         this.setState({
@@ -51,7 +54,6 @@ class Playlist extends React.Component
 
                 if ((number >= this.state.current_page - 1 && number <= this.state.current_page + 2)) {
                     this.num = number ? number : 4;
-                    console.log('pageNumbers', this.num, this.numPerPage);
                     return (
                       <span key={number} className={classes} onClick={() => this.getPerformersWithPage(this.num, this.numPerPage)}>{number}</span>
                     );
@@ -59,7 +61,6 @@ class Playlist extends React.Component
             });
 
             renderTotalPageNumbers = perPageNumbers.map(number => {
-                console.log('index', number, this.state.per_page);
                 let classes = this.state.per_page == number ? 'activePerPage' : 'perPage';
                 this.numPerPage = this.state.per_page;
                 return (
@@ -92,7 +93,7 @@ class Playlist extends React.Component
 
                 <div className="pagination">
 
-                    <div class="pageNumber">
+                    <div className="pageNumber">
                         <span onClick={() => this.getPerformersWithPage(1)}>&lt;</span>
                             {renderPageNumbers}
                         <span onClick={() => this.getPerformersWithPage(1)}>&gt;</span>
